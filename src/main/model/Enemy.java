@@ -31,7 +31,7 @@ public class Enemy {
     //MODIFIES: this, note that exists
     //EFFECTS: edits an already existing note
     public void editNote(String name, String title, String paragraph) {
-        Notes noteEdit = new Notes();
+        Notes noteEdit = new Notes("Title", "Paragraph");
         for (int i = 0; i < listOfNotes.size(); i++) {
             if (Objects.equals(listOfNotes.get(i).getTitle(), name)) {
                 noteEdit = listOfNotes.get(i);

@@ -5,11 +5,6 @@ public class Notes {
     private String title; // Title of the note
     private String paragraph; // Contents of the note
 
-    //EFFECTS: Creates a note with an empty title and paragraph
-    public Notes() {
-        this.title = "";
-        this.paragraph = "";
-    }
 
     //REQUIRES: title to be unique and not empty;
     //EFFECTS: Creates a new note with a title and paragraph

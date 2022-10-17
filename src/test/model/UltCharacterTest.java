@@ -24,7 +24,7 @@ public class UltCharacterTest {
 
     @Test
     public void addNewEnemyTest() {
-        assertEquals(this.ultCharacter.getName(), "Empty Character");
+        assertEquals(this.ultCharacter.getName(), "New Character");
         assertEquals(this.ultCharacter.getListOfEnemyCharacters().size(), 1);
         assertEquals(this.ultCharacter.getListOfEnemyCharacters().get(0).getName(), "New Enemy" );
     }

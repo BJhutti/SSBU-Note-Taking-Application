@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class NotesTest {
 
-    Notes note = new Notes();
+    Notes note = new Notes("Title", "Paragraph");
 
     @BeforeEach
     void reset() {
