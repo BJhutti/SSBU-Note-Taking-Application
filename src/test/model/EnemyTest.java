@@ -46,7 +46,11 @@ public class EnemyTest {
 
     @Test
     public void deleteNoteTest() {
-        enemy.deleteNote("New note");
+        boolean bool = enemy.deleteNote("Not a note");
+        assertFalse(bool);
+        bool = enemy.deleteNote("New note");
         assertEquals(enemy.getListOfNotes().size(), 0);
+        assertTrue(bool);
+
     }
 }

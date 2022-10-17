@@ -4,20 +4,16 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 //Represents a character the user uses, and has a list of enemies that contains notes against them
-public class Character {
-    private String name; // Name of the character
+public class UltCharacter {
+    private final String name; // Name of the character
     private final ArrayList<Enemy> listOfEnemyCharacters = new ArrayList<>(); // List of enemies
 
-    public Character(String name) {
+    public UltCharacter(String name) {
         this.name = name;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public ArrayList<Enemy> getListOfEnemyCharacters() {
