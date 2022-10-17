@@ -23,11 +23,12 @@ My program will aim to:
 ## User stories 
 
 - As a user, I want to be able to pick my character, select the character I will fight against, and create notes
-on that match up.
+on that match up. I want to add a list of notes to the enemy character, then add that enemy to a list of enemies for my
+character.
 
-- As a user, I want to be able to view all notes I have created 
+- As a user, I want to be able to view every note I have created. 
 
-- As a user, I want to be able to delete notes I've created 
+- As a user, I want to be able to delete notes I've created. 
 
-- As a user, I want to create titles for my notes
+- As a user, I want to create titles for my notes.
  

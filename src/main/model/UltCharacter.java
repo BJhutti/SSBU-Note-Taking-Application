@@ -22,7 +22,7 @@ public class UltCharacter {
 
     //REQUIRES: unique name that is not empty
     //MODIFIES: this
-    //EFFECTS: adds new enemy to lisOfEnemyCharacters
+    //EFFECTS: adds new enemy to listOfEnemyCharacters
     public void addEnemyToList(Enemy name) {
         listOfEnemyCharacters.add(name);
     }

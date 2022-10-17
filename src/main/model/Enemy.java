@@ -28,7 +28,7 @@ public class Enemy {
     }
 
     //REQUIRES: name of note that already exists, new title that does not exist within listOfNotes
-    //MODIFIES: this, note that exists
+    //MODIFIES: this
     //EFFECTS: edits an already existing note
     public void editNote(String name, String title, String paragraph) {
         Notes noteEdit = new Notes("Title", "Paragraph");
@@ -43,7 +43,7 @@ public class Enemy {
     }
 
     //REQUIRES: name of the note that already exists
-    //MODIFIES: this, note with name
+    //MODIFIES: this
     //EFFECTS: deletes a note using the title of the note
     public boolean deleteNote(String name) {
         for (int i = 0; i < listOfNotes.size(); i++) {
