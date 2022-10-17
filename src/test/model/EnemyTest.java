@@ -39,9 +39,12 @@ public class EnemyTest {
 
     @Test
     public void editNoteTest() {
-        this.enemy.editNote("New note", "Even Newer Note", "The Sequel");
-        assertEquals(this.enemy.getListOfNotes().get(0).getTitle(), "Even Newer Note");
-        assertEquals(this.enemy.getListOfNotes().get(0).getParagraph(), "The Sequel");
+        Notes note2 = new Notes("Note 2", "This is note 2.");
+        this.enemy.addNoteToList(note2);
+        this.enemy.editNote("Note 2", "Even Newer Note", "The Sequel");
+        assertEquals(this.enemy.getListOfNotes().get(1).getTitle(), "Even Newer Note");
+        assertEquals(this.enemy.getListOfNotes().get(1).getParagraph(), "The Sequel");
+
     }
 
     @Test
