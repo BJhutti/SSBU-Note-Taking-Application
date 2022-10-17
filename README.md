@@ -15,8 +15,8 @@ is looking to create notes for themselves.
 
 My program will aim to: 
 - allow the user to create specific notes against specific characters
-- organize notes in a clear to understand way (multiple sections) with titles 
-- separating notes into character played as, and character played against, as well as type of note
+- organize notes in a clear to understand way with titles 
+- separating notes into character played as, and character played against
 - allow for multiple characters 
 
 
@@ -27,8 +27,7 @@ on that match up.
 
 - As a user, I want to be able to view all notes I have created 
 
-- As a user, I want to be able to edit and delete notes I've created 
+- As a user, I want to be able to delete notes I've created 
 
 - As a user, I want to create titles for my notes
-
-- As a user, I want to add a note to a specific category 
+ 
