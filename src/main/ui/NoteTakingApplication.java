@@ -14,11 +14,6 @@ public class NoteTakingApplication {
 
     //EFFECTS: starts the application
     public NoteTakingApplication() {
-        UltCharacter char1 = new UltCharacter("ZSS");
-        UltCharacter char2 = new UltCharacter("Wolf");
-        characters.add(char1);
-        characters.add(char2);
-
         boolean check = true;
         while (check) {
             start();
@@ -87,51 +82,29 @@ public class NoteTakingApplication {
     //MODIFIES: this
     /*EFFECTS: creates a new menu; creates a new enemy and allows user to add notes; adds a note to an existing enemy;
     deletes an enemy; allows user to view or delete created notes; allows user to exit this menu;
-
      */
-    @SuppressWarnings("methodlength")
     public void accessCharacter(int charIndex, UltCharacter character) {
         menuForCharacterOptions();
         int choiceInt = getUserInputsInt();
         if (choiceInt == 1) {
             Enemy enemy = addEnemyToCharacter(character);
-            System.out.println("Add notes? Y/N");
-            boolean bool = getUserInputsBool();
-            while (bool) {
-                createNewNote(enemy);
-                System.out.println("Create another? Y/N");
-                bool = getUserInputsBool();
-            }
-            accessCharacter(charIndex, character);
+            createNewEnemy(charIndex, character, enemy);
             return;
         } else if (choiceInt == 2) {
-            int enemyIndex = displayEnemies(charIndex);
-            if (enemyIndex == -1) {
-                System.out.println("No enemies for this character, returning to menu.");
-                accessCharacter(charIndex, character);
-                return;
-            } else {
-                Enemy enemy = character.getListOfEnemyCharacters().get(enemyIndex);
-                createNewNote(enemy);
-            }
+            addNoteToExistingEnemy(charIndex, character);
             return;
         } else if (choiceInt == 3) {
             delete(charIndex);
             return;
         } else if (choiceInt == 4) {
-            int enemyIndex = displayEnemies(charIndex);
-            if (enemyIndex == -1) {
-                System.out.println("No enemies for this character, returning to menu.");
-                accessCharacter(charIndex, character);
-                return;
-            }
-            notesChoice(enemyIndex, charIndex);
+            viewOrDeleteNotes(charIndex, character);
             return;
         } else if (choiceInt == 5) {
             return;
         }
         System.out.println("Invalid input! Returning to menu.");
     }
+
 
     //EFFECTS: displays a menu for character options
     private void menuForCharacterOptions() {
@@ -152,6 +125,41 @@ public class NoteTakingApplication {
         Enemy enemy = new Enemy(enemyName);
         character.addEnemyToList(enemy);
         return enemy;
+    }
+
+    //EFFECTS: creates a new enemy within this character
+    private void createNewEnemy(int charIndex, UltCharacter character, Enemy enemy) {
+        System.out.println("Add notes? Y/N");
+        boolean bool = getUserInputsBool();
+        while (bool) {
+            createNewNote(enemy);
+            System.out.println("Create another? Y/N");
+            bool = getUserInputsBool();
+        }
+        accessCharacter(charIndex, character);
+    }
+
+    //EFFECTS: adds a node to an existing enemy
+    private void addNoteToExistingEnemy(int charIndex, UltCharacter character) {
+        int enemyIndex = displayEnemies(charIndex);
+        if (enemyIndex == -1) {
+            System.out.println("No enemies for this character, returning to menu.");
+            accessCharacter(charIndex, character);
+        } else {
+            Enemy enemy = character.getListOfEnemyCharacters().get(enemyIndex);
+            createNewNote(enemy);
+        }
+    }
+
+    //EFFECTS: allows user to view or delete notes on a particular enemy
+    private void viewOrDeleteNotes(int charIndex, UltCharacter character) {
+        int enemyIndex = displayEnemies(charIndex);
+        if (enemyIndex == -1) {
+            System.out.println("No enemies for this character, returning to menu.");
+            accessCharacter(charIndex, character);
+            return;
+        }
+        notesChoice(enemyIndex, charIndex);
     }
 
     //EFFECTS: displays enemies and allows user to select one
@@ -193,7 +201,7 @@ public class NoteTakingApplication {
     //EFFECTS: deletes a note for an enemy given the title of the note
     private void deleteNote(Enemy enemy) {
         System.out.println("Which note would you like to delete?");
-        StringBuilder notesList = new StringBuilder("| ");
+        StringBuilder notesList = new StringBuilder("|");
         for (int i = 0; i < enemy.getListOfNotes().size(); i++) {
             Notes note = enemy.getListOfNotes().get(i);
             notesList.append(" ").append(note.getTitle()).append(" | ");
@@ -208,7 +216,7 @@ public class NoteTakingApplication {
         }
     }
 
-    //EFFECTS: creates a menu for notes
+    //EFFECTS: creates a menu for notes; allows user to view notes; allows user to delete a note;
     private void notesChoice(int enemyIndex, int charIndex) {
         Enemy enemy = characters.get(charIndex).getListOfEnemyCharacters().get(enemyIndex);
         if (enemy.getListOfNotes().isEmpty()) {
@@ -231,7 +239,8 @@ public class NoteTakingApplication {
             System.out.println(note.getTitle() + "\n" + note.getParagraph());
             System.out.println("View Next Note? Y/N");
             if (!getUserInputsBool()) {
-                i = enemy.getListOfNotes().size() + 1;
+                System.out.println("Returning to menu.");
+                return;
             }
         }
         System.out.println("No more notes, returning to menu.");
