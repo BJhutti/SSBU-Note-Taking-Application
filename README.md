@@ -31,4 +31,10 @@ character.
 - As a user, I want to be able to delete notes I've created. 
 
 - As a user, I want to create titles for my notes.
+
+- As a user, I want to be able to save my Character, Enemies, and Notes to a file
+
+- As a user, I want to receive the option to save or not before I quit
+
+- As a user, I want to be able to choose to load my safe file before the application starts, but have the option not to
  
