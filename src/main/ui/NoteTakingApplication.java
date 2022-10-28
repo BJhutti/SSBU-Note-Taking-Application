@@ -4,34 +4,81 @@ import model.Enemy;
 import model.Notes;
 import model.UltCharacter;
 import model.UserData;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
+//CITATION
+//parts of this class were helped created using JsonReader.java in JsonSerializationDemo
+//given by UBC in the course CPSC 210. This also includes other classes in the model package that use Json
+
 public class NoteTakingApplication {
+    private UserData data = new UserData("Bryan's application.");
     private final Scanner scanner = new Scanner(System.in);
-    private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
 
-    private UserData data;
+    private static final String LOCATION_STORAGE = "./data/Bryan's_Notes.json";
+    private final JsonWriter jsonWriter;
+    private final JsonReader jsonReader;
 
-    private static final String JSON_STORE = "./data/characters.json";
-
-    //EFFECTS: starts the application
+    //EFFECTS: starts the application, creates new storage places for writer and reader,
+    // asks user if they would like to quit and save
     public NoteTakingApplication() {
+        jsonWriter = new JsonWriter(LOCATION_STORAGE);
+        jsonReader = new JsonReader(LOCATION_STORAGE);
         boolean check = true;
+        if (loadQuestion()) {
+            loadFile();
+        }
         while (check) {
             start();
             if (quitQuestion()) {
+                if (saveQuestion()) {
+                    saveFile();
+                }
                 check = false;
             }
         }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: loads a file from the given location storage
+    private void loadFile() {
+        try {
+            data = jsonReader.read();
+            System.out.println("Loaded " + data.getName() + " from " + LOCATION_STORAGE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + LOCATION_STORAGE + ". Creating a new file.");
+        }
+    }
+
+    //MODIFIES: LOCATION_STORAGE file
+    //EFFECTS: saves data to the file location
+    private void saveFile() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(data);
+            jsonWriter.close();
+            System.out.println("Saved " + data.getName() + " to " + LOCATION_STORAGE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable add to the file located at: " + LOCATION_STORAGE + ". Data was not saved.");
+        }
+    }
+
+    //EFFECTS: asks the user if they would like to load from a save file
+    private boolean loadQuestion() {
+        System.out.println("Load From Save File? Y/N");
+        return getUserInputsBool();
+    }
+
+    //EFFECTS: asks user if they would like to save their progress
+    private boolean saveQuestion() {
+        System.out.println("Save Progress? Y/N");
+        return getUserInputsBool();
     }
 
     //EFFECTS: enters the start menu of the application
@@ -40,7 +87,7 @@ public class NoteTakingApplication {
         while (notQuit) {
             String option1 = "|1: Create new character file. | ";
             String option2 = "2: Access created characters. | ";
-            String option3 = "3: Quit. |";
+            String option3 = "3: Quit and Save. |";
             System.out.println("What would you like to do?\n" + option1 + option2 + option3);
             notQuit = assessInput();
         }
@@ -68,7 +115,7 @@ public class NoteTakingApplication {
         System.out.println("Choose a name:");
         String name = this.scanner.nextLine();
         UltCharacter newChar = new UltCharacter(name);
-        this.data.getCharacters().add(newChar);
+        this.data.addCharacterToList(newChar);
         System.out.println("New character " + name + " created! Returning to menu.");
     }
 
@@ -100,20 +147,17 @@ public class NoteTakingApplication {
         if (choiceInt == 1) {
             Enemy enemy = addEnemyToCharacter(character);
             createNewEnemy(charIndex, character, enemy);
-            return;
         } else if (choiceInt == 2) {
             addNoteToExistingEnemy(charIndex, character);
-            return;
         } else if (choiceInt == 3) {
             delete(charIndex);
-            return;
         } else if (choiceInt == 4) {
             viewOrDeleteNotes(charIndex, character);
-            return;
         } else if (choiceInt == 5) {
-            return;
+            //returns
+        } else {
+            System.out.println("Invalid input! Returning to menu.");
         }
-        System.out.println("Invalid input! Returning to menu.");
     }
 
 
@@ -160,6 +204,7 @@ public class NoteTakingApplication {
             Enemy enemy = character.getListOfEnemyCharacters().get(enemyIndex);
             createNewNote(enemy);
         }
+        accessCharacter(charIndex, character);
     }
 
     //EFFECTS: allows user to view or delete notes on a particular enemy
@@ -171,6 +216,7 @@ public class NoteTakingApplication {
             return;
         }
         notesChoice(enemyIndex, charIndex);
+        accessCharacter(charIndex, character);
     }
 
     //EFFECTS: displays enemies and allows user to select one
@@ -278,19 +324,4 @@ public class NoteTakingApplication {
     public String getUserInputsString() {
         return this.scanner.nextLine();
     }
-
-    // EFFECTS: saves the workroom to file
-    private void saveWorkRoom() {
-        try {
-            jsonWriter.open();
-            jsonWriter.write(this);
-            jsonWriter.close();
-            //System.out.println("Saved " + name + " to " + JSON_STORE);
-        } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE);
-        }
-    }
-
 }
-
-

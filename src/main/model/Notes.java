@@ -38,10 +38,12 @@ public class Notes implements Writable {
         return paragraph;
     }
 
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("Title", title);
-        json.put("Paragraph", paragraph);
-        return json;
+    //EFFECTS: returns a JSON object that represents this note
+    @Override
+    public JSONObject convertToJson() {
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("Title", title);
+        jsonObj.put("Paragraph", paragraph);
+        return jsonObj;
     }
 }

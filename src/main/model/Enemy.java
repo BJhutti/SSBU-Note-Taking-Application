@@ -59,18 +59,21 @@ public class Enemy implements Writable {
         return false;
     }
 
-    public JSONObject toJson() {
+    //Returns a json object that contains this enemy object
+    @Override
+    public JSONObject convertToJson() {
         JSONObject json = new JSONObject();
         json.put("Enemy Name", name);
         json.put("Notes", notesToJson());
         return json;
     }
 
+    //Returns a JSONArray of the notes within this enemy object's list of notes
     private JSONArray notesToJson() {
         JSONArray jsonArray = new JSONArray();
 
         for (Notes note : listOfNotes) {
-            jsonArray.put(note.toJson());
+            jsonArray.put(note.convertToJson());
         }
 
         return jsonArray;

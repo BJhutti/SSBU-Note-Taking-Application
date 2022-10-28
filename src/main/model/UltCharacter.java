@@ -44,17 +44,19 @@ public class UltCharacter implements Writable {
     }
 
     @Override
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("Character Name", name);
-        json.put("Enemies", enemiesToJSon());
-        return json;
+    //Creates a Json object that represents this UltCharacter
+    public JSONObject convertToJson() {
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("Character Name", name);
+        jsonObj.put("Enemies", enemiesToJSon());
+        return jsonObj;
     }
 
+    //Creates a JSon array that contains all the enemies within this character
     private JSONArray enemiesToJSon() {
         JSONArray jsonArray = new JSONArray();
         for (Enemy enemy : listOfEnemyCharacters) {
-            jsonArray.put(enemy.toJson());
+            jsonArray.put(enemy.convertToJson());
         }
         return jsonArray;
     }

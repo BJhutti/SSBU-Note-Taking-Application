@@ -11,13 +11,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+//CITATION
+//parts of this class were helped created using JsonReader.java in JsonSerializationDemo
+//given by UBC in the course CPSC 210
 public class JsonWriterTest {
     @Test
     void invalidFileLocationTest () {
         try {
             UserData data = new UserData("Bryan's Data");
-            JsonWriter writer = new JsonWriter("notfile\n-_-~file|name/.json");
-            writer.open();
+            JsonWriter writerObj = new JsonWriter("notfile\n-_-~file|name/.json");
+            writerObj.open();
             fail("Should have not opened a file location");
         } catch (FileNotFoundException ignored) {
             //passes!
@@ -28,14 +31,14 @@ public class JsonWriterTest {
     void createEmptyUserDataTest() {
         try {
             UserData data = new UserData("Bryan's Data");
-            JsonWriter writer = new JsonWriter("./data/testWriteEmptyUserData.json");
+            JsonWriter writerObj = new JsonWriter("./data/testWriteEmptyUserData.json");
 
-            writer.open();
-            writer.write(data);
-            writer.close();
+            writerObj.open();
+            writerObj.write(data);
+            writerObj.close();
 
-            JsonReader reader = new JsonReader("./data/testWriteEmptyUserData.json");
-            data = reader.read();
+            JsonReader readerObj = new JsonReader("./data/testWriteEmptyUserData.json");
+            data = readerObj.read();
 
             assertEquals(data.getName(), "Bryan's Data");
             assertEquals(data.getCharacters().size(), 0);
@@ -54,18 +57,19 @@ public class JsonWriterTest {
             UltCharacter character = new UltCharacter("Character");
             Enemy enemy = new Enemy("Enemy");
             Notes note = new Notes("Title", "Paragraph");
+
             enemy.addNoteToList(note);
             character.addEnemyToList(enemy);
             data.addCharacterToList(character);
 
-            JsonWriter writer = new JsonWriter("./data/writeFilledUserDataTest.json");
-            writer.open();
-            writer.write(data);
-            writer.close();
+            JsonWriter writerObj = new JsonWriter("./data/writeFilledUserDataTest.json");
+            writerObj.open();
+            writerObj.write(data);
+            writerObj.close();
 
-            JsonReader reader = new JsonReader("./data/writeFilledUserDataTest.json");
+            JsonReader readerObj = new JsonReader("./data/writeFilledUserDataTest.json");
 
-            data = reader.read();
+            data = readerObj.read();
             assertEquals(data.getName(), "Bryan's Data");
             assertEquals(data.getCharacters().size(), 1);
 
