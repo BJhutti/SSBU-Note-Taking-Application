@@ -9,7 +9,7 @@ public class EnemyTest {
     private Enemy enemy = new Enemy("New Enemy");
 
     @BeforeEach
-    public void  create() {
+    public void createTest() {
         Notes note = new Notes("New note", "A new note.");
         this.enemy.addNoteToList(note);
     }

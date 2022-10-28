@@ -3,13 +3,14 @@ package ui;
 import model.Enemy;
 import model.Notes;
 import model.UltCharacter;
+import model.UserData;
 
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class NoteTakingApplication {
-    private final ArrayList<UltCharacter> characters = new ArrayList<>();
+    private final UserData data = new UserData("Bryan's application.");
     private final Scanner scanner = new Scanner(System.in);
 
     //EFFECTS: starts the application
@@ -57,24 +58,24 @@ public class NoteTakingApplication {
         System.out.println("Choose a name:");
         String name = this.scanner.nextLine();
         UltCharacter newChar = new UltCharacter(name);
-        this.characters.add(newChar);
+        this.data.addCharacterToList(newChar);
         System.out.println("New character " + name + " created! Returning to menu.");
     }
 
     //EFFECTS: displays a list of characters, and allows user to select one
     public void displayCharacters() {
-        if (this.characters.isEmpty()) {
+        if (this.data.getCharacters().isEmpty()) {
             System.out.println("No characters currently in system!");
             return;
         }
         System.out.println("Which character would you like to access?");
         StringBuilder listOfCharacters = new StringBuilder("| ");
-        for (int i = 0; i < this.characters.size(); i++) {
-            listOfCharacters.append(i).append(": ").append(this.characters.get(i).getName()).append(" | ");
+        for (int i = 0; i < this.data.getCharacters().size(); i++) {
+            listOfCharacters.append(i).append(": ").append(this.data.getCharacters().get(i).getName()).append(" | ");
         }
         System.out.println(listOfCharacters);
         int charIndex = getUserInputsInt();
-        UltCharacter character = this.characters.get(charIndex);
+        UltCharacter character = this.data.getCharacters().get(charIndex);
         accessCharacter(charIndex, character);
     }
 
@@ -164,7 +165,7 @@ public class NoteTakingApplication {
 
     //EFFECTS: displays enemies and allows user to select one
     private int displayEnemies(int charIndex) {
-        ArrayList<Enemy> enemies = characters.get(charIndex).getListOfEnemyCharacters();
+        ArrayList<Enemy> enemies = this.data.getCharacters().get(charIndex).getListOfEnemyCharacters();
         if (enemies.isEmpty()) {
             return -1;
         }
@@ -180,9 +181,9 @@ public class NoteTakingApplication {
     //MODIFIES: this
     //EFFECTS: deletes a character from characters
     public void delete(int index) {
-        System.out.println("Deleting "  + this.characters.get(index).getName() + "...");
+        System.out.println("Deleting "  + this.data.getCharacters().get(index).getName() + "...");
         System.out.println("Returning to menu.");
-        this.characters.remove(index);
+        this.data.getCharacters().remove(index);
     }
 
     //MODIFIES: this
@@ -218,7 +219,7 @@ public class NoteTakingApplication {
 
     //EFFECTS: creates a menu for notes; allows user to view notes; allows user to delete a note;
     private void notesChoice(int enemyIndex, int charIndex) {
-        Enemy enemy = characters.get(charIndex).getListOfEnemyCharacters().get(enemyIndex);
+        Enemy enemy = this.data.getCharacters().get(charIndex).getListOfEnemyCharacters().get(enemyIndex);
         if (enemy.getListOfNotes().isEmpty()) {
             System.out.println("No notes for this enemy");
         }
