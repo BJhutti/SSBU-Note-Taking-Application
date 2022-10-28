@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 //Represents a note that has a title for the note, and a paragraph containing the notes
-public class Notes {
+public class Notes implements Writable {
     private String title; // Title of the note
     private String paragraph; // Contents of the note
 
@@ -33,5 +36,12 @@ public class Notes {
 
     public String getParagraph() {
         return paragraph;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Title", title);
+        json.put("Paragraph", paragraph);
+        return json;
     }
 }

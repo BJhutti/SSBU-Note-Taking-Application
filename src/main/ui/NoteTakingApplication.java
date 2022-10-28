@@ -4,14 +4,24 @@ import model.Enemy;
 import model.Notes;
 import model.UltCharacter;
 import model.UserData;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class NoteTakingApplication {
-    private final UserData data = new UserData("Bryan's application.");
     private final Scanner scanner = new Scanner(System.in);
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
+    private UserData data;
+
+    private static final String JSON_STORE = "./data/characters.json";
 
     //EFFECTS: starts the application
     public NoteTakingApplication() {
@@ -58,7 +68,7 @@ public class NoteTakingApplication {
         System.out.println("Choose a name:");
         String name = this.scanner.nextLine();
         UltCharacter newChar = new UltCharacter(name);
-        this.data.addCharacterToList(newChar);
+        this.data.getCharacters().add(newChar);
         System.out.println("New character " + name + " created! Returning to menu.");
     }
 
@@ -268,4 +278,19 @@ public class NoteTakingApplication {
     public String getUserInputsString() {
         return this.scanner.nextLine();
     }
+
+    // EFFECTS: saves the workroom to file
+    private void saveWorkRoom() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(this);
+            jsonWriter.close();
+            //System.out.println("Saved " + name + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
 }
+
+

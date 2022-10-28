@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 //Represents a character the user uses, and has a list of enemies that contains notes against them
-public class UltCharacter {
+public class UltCharacter implements Writable {
     private final String name; // Name of the character
     private final ArrayList<Enemy> listOfEnemyCharacters = new ArrayList<>(); // List of enemies
 
@@ -40,4 +44,19 @@ public class UltCharacter {
     }
 
 
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Character Name", name);
+        json.put("Enemies", enemiesToJson());
+        return json;
+    }
+
+    private JSONArray enemiesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Enemy enemy : listOfEnemyCharacters) {
+            jsonArray.put(enemy.toJson());
+        }
+        return jsonArray;
+    }
 }
