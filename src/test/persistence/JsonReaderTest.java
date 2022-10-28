@@ -1,6 +1,9 @@
-package model;
+package persistence;
+import model.Enemy;
+import model.Notes;
+import model.UltCharacter;
+import model.UserData;
 import org.junit.jupiter.api.Test;
-import persistence.JsonReader;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
@@ -8,7 +11,7 @@ import java.util.ArrayList;
 
 public class JsonReaderTest {
     @Test
-    void testFileDoesNotExist() {
+    void fileDoesNotExistTest() {
         JsonReader jsonReader = new JsonReader("./data/thisFileDoesNoteExist.json");
         try{
             UserData data = jsonReader.read();
@@ -19,7 +22,7 @@ public class JsonReaderTest {
     }
 
     @Test
-    void testEmptyUserData() {
+    void emptyUserDataTest() {
         JsonReader jsonReader = new JsonReader("./data/testEmptyUserData.json");
         try {
             UserData data = jsonReader.read();
@@ -35,7 +38,7 @@ public class JsonReaderTest {
         }
     }
     @Test
-    void testFilledUserData() {
+    void filledUserDataTest() {
         JsonReader jsonReader = new JsonReader("./data/testUserWithData.json");
         try {
             UserData data = jsonReader.read();

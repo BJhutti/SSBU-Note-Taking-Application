@@ -2,34 +2,44 @@ package model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import persistence.Writable;
 
 import java.util.ArrayList;
 
-public class UserData {
-    protected final ArrayList<UltCharacter> characters = new ArrayList<>(); //UI shouldnt have these, create a new class
-    protected static final String name = "Bryan's app";
+public class UserData implements Writable {
+    private final ArrayList<UltCharacter> characters = new ArrayList<>();
+    private final String name;
+
+    public UserData(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public ArrayList<UltCharacter> getCharacters() {
         return characters;
     }
+
+    public void addCharacterToList(UltCharacter character) {
+        characters.add(character);
+
+    }
+
+    @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("Name", name);
-        json.put("listOfCharacters", charactersToJson());
+        json.put("name", name);
+        json.put("Characters", charactersToJSon());
         return json;
     }
 
-    private JSONArray charactersToJson() {
+    private JSONArray charactersToJSon() {
         JSONArray jsonArray = new JSONArray();
-
         for (UltCharacter character : characters) {
             jsonArray.put(character.toJson());
         }
         return jsonArray;
-    }
-
-
-    public void addCharToList(UltCharacter character) {
-        this.characters.add(character);
     }
 }
