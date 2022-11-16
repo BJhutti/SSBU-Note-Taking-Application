@@ -1,0 +1,39 @@
+{
+    "Characters": [
+        {
+            "Enemies": [
+                {
+                    "Enemy Name": "Enemy 1",
+                    "Notes": [
+                        {
+                            "Title": "Note 1",
+                            "Paragraph": "ara 1"
+                        },
+                        {
+                            "Title": "Tite 2",
+                            "Paragraph": "Para 2"
+                        },
+                        {
+                            "Title": "Para ",
+                            "Paragraph": "titel 3"
+                        },
+                        {
+                            "Title": "Para 1",
+                            "Paragraph": "Para 2"
+                        }
+                    ]
+                },
+                {
+                    "Enemy Name": "ENemy 2",
+                    "Notes": []
+                }
+            ],
+            "Character Name": "Hero"
+        },
+        {
+            "Enemies": [],
+            "Character Name": "MAN"
+        }
+    ],
+    "name": "Bryan's application."
+}

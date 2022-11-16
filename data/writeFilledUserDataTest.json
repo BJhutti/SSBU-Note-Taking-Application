@@ -1,0 +1,13 @@
+{
+    "Characters": [{
+        "Enemies": [{
+            "Enemy Name": "Enemy",
+            "Notes": [{
+                "Title": "Title",
+                "Paragraph": "Paragraph"
+            }]
+        }],
+        "Character Name": "Character"
+    }],
+    "name": "Bryan's Data"
+}
