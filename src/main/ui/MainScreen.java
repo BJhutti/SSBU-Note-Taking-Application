@@ -39,6 +39,7 @@ public class MainScreen extends JPanel implements ActionListener {
         this.add(button3);
     }
 
+    // EFFECTS: creates a new frame given the input of the user for which menu they would like to go to
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("1")) {

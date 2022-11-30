@@ -41,6 +41,8 @@ public class CreateNote extends JPanel implements ActionListener {
         this.add(field);
     }
 
+    // MODIFIES: enemy
+    // EFFECTS: confirms the inputs from user to add to enemy
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Confirm")) {
@@ -54,6 +56,8 @@ public class CreateNote extends JPanel implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a new frame for getting notes
     private void para() {
         this.removeAll();
         revalidate();

@@ -36,6 +36,8 @@ public class DeleteNote extends JPanel implements ActionListener {
         this.add(panel);
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes the frame and replaces it with the menu when the user deletes a note
     @Override
     public void actionPerformed(ActionEvent e) {
         int index = Integer.parseInt(e.getActionCommand());

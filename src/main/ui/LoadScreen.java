@@ -35,6 +35,7 @@ public class LoadScreen extends JPanel implements ActionListener {
 
     }
 
+    // EFFECTS: creates a new frame after asking user if they would like to load or not
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Y")) {

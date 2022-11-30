@@ -39,6 +39,8 @@ public class ViewOrDeleteNotes extends JPanel implements ActionListener {
 
     }
 
+
+    // EFFECTS: creates a new frame for viewing or deleting a note
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("V")) {

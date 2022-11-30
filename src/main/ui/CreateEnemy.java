@@ -39,6 +39,7 @@ public class CreateEnemy extends JPanel implements ActionListener {
         this.add(field);
     }
 
+    // EFFECTS: creates a new frame for adding an enemy, or note
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Confirm")) {
@@ -57,11 +58,15 @@ public class CreateEnemy extends JPanel implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a new frame for adding a note
     private void createNote(Enemy enemy, NoteTakingApplication app, int index) {
         JPanel panel = new CreateNote(enemy, index, app);
         this.add(panel);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a new frame for asking the user to add a note or not
     public void notes() {
         this.removeAll();
         revalidate();

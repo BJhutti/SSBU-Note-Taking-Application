@@ -52,12 +52,16 @@ public class UserData implements Writable {
         return jsonArray;
     }
 
+    // EFFECTS: displays the events that were written to the EventLog
     public void printLog(EventLog instance) {
         for (Event event : instance) {
             System.out.println(event);
         }
     }
 
+
+    // MODIFIES: characters
+    // EFFECTS: removes a character from characters given its index
     public void remove(int index) {
         EventLog.getInstance().logEvent(new Event("- Removed " + characters.get(index).getName()
                 + " from list of characters -"));

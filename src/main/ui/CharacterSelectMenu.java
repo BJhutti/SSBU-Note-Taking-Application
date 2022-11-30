@@ -32,6 +32,7 @@ public class CharacterSelectMenu extends JPanel implements ActionListener {
         this.add(panel);
     }
 
+    // EFFECTS: gets the index of the character selected and creates a new frame
     @Override
     public void actionPerformed(ActionEvent e) {
         int index = Integer.parseInt(e.getActionCommand());

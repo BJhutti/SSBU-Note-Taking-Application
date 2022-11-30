@@ -14,7 +14,7 @@ public class ListEnemies extends JPanel implements ActionListener {
     private NoteTakingApplication app;
     private Enemy enemy;
     private int index;
-    UltCharacter character;
+    private UltCharacter character;
 
     public ListEnemies(UltCharacter character, int index, NoteTakingApplication app) {
         super(null);
@@ -42,6 +42,8 @@ public class ListEnemies extends JPanel implements ActionListener {
         System.out.println("test");
     }
 
+    // MODIFIES: this
+    // EFFECTS: shows a new menu for creating a note
     @Override
     public void actionPerformed(ActionEvent e) {
         int index2 = Integer.parseInt(e.getActionCommand());

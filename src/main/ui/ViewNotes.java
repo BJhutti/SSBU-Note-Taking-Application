@@ -43,6 +43,8 @@ public class ViewNotes extends JPanel implements ActionListener {
         this.add(panel);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a new frame for viewing the notes
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Return")) {

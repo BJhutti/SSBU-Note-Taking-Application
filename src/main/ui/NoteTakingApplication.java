@@ -204,11 +204,15 @@ public class NoteTakingApplication extends JFrame implements ActionListener {
         setContentPane(panel);
     }
 
+    //MODIFIES: this
+    //EFFECTS: create a note for an enemy given the enemy
     public void createNote(Enemy enemy, int index) {
         panel = new CreateNote(enemy, index, this);
         setContentPane(panel);
     }
 
+
+    //EFFECTS: shows the event log and exits the app
     public void quit() {
         data.printLog(EventLog.getInstance());
         System.exit(0);

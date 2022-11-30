@@ -13,7 +13,7 @@ import java.io.*;
 
 //A json writer that when called, allows the user to write to a file given UserData
 public class JsonWriter {
-    private static final int TAB = 4; //tab legnth
+    private static final int TAB = 4; //tab length
     private PrintWriter writer;
     private final String fileLocation; //location of file you are writing to
 

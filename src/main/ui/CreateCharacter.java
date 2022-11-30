@@ -32,6 +32,8 @@ public class CreateCharacter extends JPanel implements ActionListener {
         this.add(field);
     }
 
+
+    // EFFECTS: creates a new character given the text, and returns to menu
     @Override
     public void actionPerformed(ActionEvent e) {
         String name = field.getText();

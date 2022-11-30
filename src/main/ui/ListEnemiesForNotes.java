@@ -36,6 +36,7 @@ public class ListEnemiesForNotes extends JPanel implements ActionListener {
         this.add(panel);
     }
 
+    // EFFECTS: creates a new frame for showing the notes
     @Override
     public void actionPerformed(ActionEvent e) {
         int index = Integer.parseInt(e.getActionCommand());

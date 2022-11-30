@@ -35,6 +35,8 @@ public class CharacterMenu extends JPanel implements ActionListener {
         placeButtons();
     }
 
+    // MODIFIES: this
+    // EFFECTS: places the buttons on the frame
     private void placeButtons() {
         JButton button2 = new JButton("Add note to enemy");
         button2.setBounds(110,200,140,25);
@@ -58,6 +60,7 @@ public class CharacterMenu extends JPanel implements ActionListener {
         this.add(button5);
     }
 
+    // EFFECTS: takes the users inputs and chooses which menu to get
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("1")) {

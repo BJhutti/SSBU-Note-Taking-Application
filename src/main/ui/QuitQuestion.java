@@ -40,6 +40,8 @@ public class QuitQuestion extends JPanel implements ActionListener {
 
     }
 
+
+    // EFFECTS: allows to user to choose to quit or note, or save or not; creates new frames based on inputs
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Y")) {
