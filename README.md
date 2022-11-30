@@ -47,3 +47,25 @@ character.
 - You can locate my visual component by starting the application, which shows a splash screen
 - You can save the state of my application by pressing Quit/Save, then pressing yes twice
 - You can reload the state of my application by pressing yes on the first screen of the application 
+
+## Phase 4: Task 2
+- Tue Nov 29 19:22:09 PST 2022
+- Loading save file from ./data/Bryan's_Notes.json
+- Tue Nov 29 19:22:12 PST 2022
+- Added Hero to list of characters -
+- Tue Nov 29 19:22:17 PST 2022
+- Added Villain to Hero's enemies -
+-  Tue Nov 29 19:22:31 PST 2022
+- Added How to beat Villain to Villain's notes -
+-  Tue Nov 29 19:22:35 PST 2022
+- Removed How to beat Villain from Villain's notes -
+-  Tue Nov 29 19:22:38 PST 2022
+- Removed Hero from list of characters -
+-  Tue Nov 29 19:22:42 PST 2022
+- Saving file to ./data/Bryan's_Notes.json
+
+Note: there may not be any events logged in the case that: 
+- the user decides not to load from a save file
+- the user decides not to add or remove any characters, notes, or enemies
+- the user decides not to save when exiting the app
+Otherwise, at least 1 event will always be written 

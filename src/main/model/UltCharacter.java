@@ -29,6 +29,7 @@ public class UltCharacter implements Writable {
     //EFFECTS: adds new enemy to listOfEnemyCharacters
     public void addEnemyToList(Enemy name) {
         listOfEnemyCharacters.add(name);
+        EventLog.getInstance().logEvent(new Event("- Added " + name.getName() + " to " + this.name + "'s enemies -"));
     }
 
     //REQUIRES: name of enemy to be in list
@@ -39,6 +40,7 @@ public class UltCharacter implements Writable {
             if (Objects.equals(listOfEnemyCharacters.get(i).getName(), name)) {
                 listOfEnemyCharacters.remove(i);
                 i = listOfEnemyCharacters.size();
+                EventLog.getInstance().logEvent(new Event("- Removed " + name + " from " + this.name + "'s enemies -"));
             }
         }
     }

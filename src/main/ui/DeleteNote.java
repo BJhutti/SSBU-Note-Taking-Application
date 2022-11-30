@@ -49,6 +49,6 @@ public class DeleteNote extends JPanel implements ActionListener {
     //MODIFIES: app
     //EFFECTS: deletes a specific note within enemy
     private void deleteNote(int index) {
-        enemy.getListOfNotes().remove(index);
+        enemy.deleteNote(enemy.getListOfNotes().get(index).getTitle());
     }
 }

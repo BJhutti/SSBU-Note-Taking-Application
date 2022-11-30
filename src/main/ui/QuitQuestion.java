@@ -1,15 +1,18 @@
 package ui;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 //a panel that lets the user choose if they would like to quit or not
 public class QuitQuestion extends JPanel implements ActionListener {
-    private NoteTakingApplication app;
+    private final NoteTakingApplication app;
 
     public QuitQuestion(NoteTakingApplication app) {
+
 
         super(null);
         this.app = app;
@@ -33,6 +36,8 @@ public class QuitQuestion extends JPanel implements ActionListener {
         noButton.setBounds(200,200,100,25);
         this.add(noButton);
 
+
+
     }
 
     @Override
@@ -45,10 +50,11 @@ public class QuitQuestion extends JPanel implements ActionListener {
         }
         if (e.getActionCommand().equals("Y2")) {
             app.saveFile();
-            System.exit(0);
+            app.quit();
+
         }
         if (e.getActionCommand().equals("N2")) {
-            System.exit(0);
+            app.quit();
         }
     }
 

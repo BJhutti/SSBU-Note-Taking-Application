@@ -1,6 +1,7 @@
 package ui;
 
 import model.Enemy;
+import model.EventLog;
 import model.UltCharacter;
 import model.UserData;
 import persistence.JsonReader;
@@ -10,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -36,16 +39,26 @@ public class NoteTakingApplication extends JFrame implements ActionListener {
         setLayout(null);
         this.setPreferredSize(new Dimension(400,400));
         this.setSize(400, 400);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
         SplashScreen panel = new SplashScreen();
         panel.setBounds(0, 0, 400, 400);
         this.add(panel);
         this.setVisible(true);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                quit();
+            }
+
+        });
+
         timer.start();
+
     }
 
-    //EFFECTS: starts the note taking app after splashscreen
+    //EFFECTS: starts the note-taking app after splashscreen
     @Override
     public void actionPerformed(ActionEvent e) {
         timer.stop();
@@ -65,7 +78,7 @@ public class NoteTakingApplication extends JFrame implements ActionListener {
     public void loadFile() {
         try {
             data = jsonReader.read();
-            System.out.println("Loaded " + data.getName() + " from " + LOCATION_STORAGE);
+//            System.out.println("Loaded " + data.getName() + " from " + LOCATION_STORAGE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + LOCATION_STORAGE + ". Creating a new file.");
         }
@@ -78,7 +91,7 @@ public class NoteTakingApplication extends JFrame implements ActionListener {
             jsonWriter.open();
             jsonWriter.write(data);
             jsonWriter.close();
-            System.out.println("Saved " + data.getName() + " to " + LOCATION_STORAGE);
+//            System.out.println("Saved " + data.getName() + " to " + LOCATION_STORAGE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable add to the file located at: " + LOCATION_STORAGE + ". Data was not saved.");
         }
@@ -155,7 +168,7 @@ public class NoteTakingApplication extends JFrame implements ActionListener {
     //MODIFIES: this
     //EFFECTS: deletes a character from characters
     public void delete(int index) {
-        this.data.getCharacters().remove(index);
+        this.data.remove(index);
     }
 
 
@@ -194,5 +207,10 @@ public class NoteTakingApplication extends JFrame implements ActionListener {
     public void createNote(Enemy enemy, int index) {
         panel = new CreateNote(enemy, index, this);
         setContentPane(panel);
+    }
+
+    public void quit() {
+        data.printLog(EventLog.getInstance());
+        System.exit(0);
     }
 }

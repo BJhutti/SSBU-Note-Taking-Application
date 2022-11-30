@@ -62,8 +62,10 @@ public class ViewNotes extends JPanel implements ActionListener {
         label.setFont(new Font("Arial", Font.BOLD, 18));
         this.add(label);
 
-        JTextArea textArea = new JTextArea(note.getParagraph());
+        JTextArea textArea = new JTextArea(note.getParagraph(), 20,20);
         textArea.setBounds(100, 150, 200, 100);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
         this.add(textArea);
 
         JButton button = new JButton("Return");

@@ -29,6 +29,7 @@ public class UserData implements Writable {
     //EFFECTS: adds a new character to the list of characters
     public void addCharacterToList(UltCharacter character) {
         characters.add(character);
+        EventLog.getInstance().logEvent(new Event("- Added " + character.getName() + " to list of characters -"));
 
     }
 
@@ -49,5 +50,17 @@ public class UserData implements Writable {
             jsonArray.put(character.convertToJson());
         }
         return jsonArray;
+    }
+
+    public void printLog(EventLog instance) {
+        for (Event event : instance) {
+            System.out.println(event);
+        }
+    }
+
+    public void remove(int index) {
+        EventLog.getInstance().logEvent(new Event("- Removed " + characters.get(index).getName()
+                + " from list of characters -"));
+        this.characters.remove(index);
     }
 }

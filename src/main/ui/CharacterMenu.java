@@ -64,7 +64,14 @@ public class CharacterMenu extends JPanel implements ActionListener {
             app.addEnemyToCharacter(character, index);
         }
         if (e.getActionCommand().equals("2")) {
-            app.addNoteToExistingEnemy(index, character);
+            if (character.getListOfEnemyCharacters().isEmpty()) {
+                JLabel errorLabel = new JLabel("Error, no enemies");
+                errorLabel.setBounds(140,100,150,100);
+                this.add(errorLabel);
+                this.repaint();
+            } else {
+                app.addNoteToExistingEnemy(index, character);
+            }
         }
         if (e.getActionCommand().equals("3")) {
             app.delete(index);

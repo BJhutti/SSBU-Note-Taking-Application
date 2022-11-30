@@ -29,6 +29,8 @@ public class Enemy implements Writable {
     //EFFECTS: adds a new note to the end of listOfNotes
     public void addNoteToList(Notes note) {
         this.listOfNotes.add(note);
+        EventLog.getInstance().logEvent(new Event("- Added " + note.getTitle() + " to "
+                + getName() + "'s notes -"));
     }
 
     //REQUIRES: name of note that already exists, new title that does not exist within listOfNotes
@@ -52,6 +54,8 @@ public class Enemy implements Writable {
     public boolean deleteNote(String name) {
         for (int i = 0; i < listOfNotes.size(); i++) {
             if (Objects.equals(listOfNotes.get(i).getTitle(), name)) {
+                EventLog.getInstance().logEvent(new Event("- Removed " + listOfNotes.get(i).getTitle() + " from "
+                        + getName() + "'s notes -"));
                 listOfNotes.remove(i);
                 return true;
             }

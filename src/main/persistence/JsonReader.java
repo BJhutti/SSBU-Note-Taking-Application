@@ -1,10 +1,7 @@
 package persistence;
 
 
-import model.Enemy;
-import model.Notes;
-import model.UltCharacter;
-import model.UserData;
+import model.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -34,6 +31,7 @@ public class JsonReader {
     public UserData read() throws IOException {
         String jsonData = readFile(this.fileLocation);
         JSONObject jsonObject = new JSONObject(jsonData);
+        EventLog.getInstance().logEvent(new Event("- Loading save file from " + fileLocation));
         return readUserData(jsonObject);
     }
 
