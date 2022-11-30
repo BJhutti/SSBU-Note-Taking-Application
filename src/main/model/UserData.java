@@ -64,7 +64,6 @@ public class UserData implements Writable {
     // EFFECTS: removes a character from characters given its index
     public void remove(int index) {
         EventLog.getInstance().logEvent(new Event("- Removed " + characters.get(index).getName()
-                + " from list of characters -"));
-        this.characters.remove(index);
+                + " and it's data from list of characters -"));
     }
 }

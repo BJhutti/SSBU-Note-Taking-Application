@@ -169,6 +169,7 @@ public class NoteTakingApplication extends JFrame implements ActionListener {
     //EFFECTS: deletes a character from characters
     public void delete(int index) {
         this.data.remove(index);
+        this.data.getCharacters().remove(index);
     }
 
 
