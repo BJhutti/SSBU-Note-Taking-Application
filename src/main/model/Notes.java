@@ -23,7 +23,7 @@ public class Notes implements Writable {
         this.title = newTitle;
     }
 
-    //REQUIRES: newParagraph is not empty
+    //REQUIRES: newParagraph is not emptys
     //MODIFIES: this
     //EFFECTS: changed the paragraph of the note
     public void editParagraph(String newParagraph) {
