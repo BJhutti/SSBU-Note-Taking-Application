@@ -38,15 +38,6 @@ character.
 
 - As a user, I want to be able to choose to load my safe file before the application starts, but have the option not to
 
-# Instructions for Grader
-
-- You can generate the first required event related to adding characters, then adding enemies to character
-- You can also generate the first event by adding notes to an enemy
-- You can generate the second required event by accessing a character, then selecting the shown enemies
-- You can also generate the second event by going to character, view notes, click on enemy, then note title
-- You can locate my visual component by starting the application, which shows a splash screen
-- You can save the state of my application by pressing Quit/Save, then pressing yes twice
-- You can reload the state of my application by pressing yes on the first screen of the application 
 
 ## Phase 4: Task 2
 - Tue Nov 29 19:22:09 PST 2022
